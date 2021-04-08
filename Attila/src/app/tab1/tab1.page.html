@@ -9,19 +9,19 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">news</ion-title>
+      <ion-title size="large">News</ion-title>
     </ion-toolbar>
   </ion-header>
 
     <ion-card>
-      <img src = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.vLM2mYiZSxjmDzMsAnJ2vgHaEK%26pid%3DApi&f=1">
+      <img src = {{frontimage}}>
       <ion-card-header>Big Chungus</ion-card-header> 
       <ion-card-content>You have been chunged</ion-card-content>
     </ion-card>
-  <ion-button color = "beaver">beeber</ion-button>
-  <ion-button color = "wolves">woelf</ion-button>
-  <ion-button color = "scouts">faader</ion-button>
-  <ion-button color = "pios">lumpe</ion-button>
+  <ion-button color = "beaver" (click) = "changeImage(bieber)">beeber</ion-button>
+  <ion-button color = "wolves" (click) = "changeImage(wolfe)">woelf</ion-button>
+  <ion-button color = "scouts" (click) = "changeImage(faader)">faader</ion-button>
+  <ion-button color = "pios" (click) = "changeImage(lumpe)">lumpe</ion-button>
 
 
 </ion-content>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +8,23 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(private nativeAudio: NativeAudio) {}
+  
+  ngOnInit(){
+    this.loadAudios()
+  }
 
+  
+  loadAudios(){
+    //for (let soundName in ["soundboard_1.mp3"]){
+      this.nativeAudio.preloadSimple("1", 'sound/glied.mp3');//.then(onSuccess, onError);
+    //}
+  }
+
+  playAudio(id: String) {
+    this.nativeAudio.play("1");//.then(onSuccess, onError);
+  }
+  
+
+  
 }

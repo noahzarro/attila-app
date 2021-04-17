@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-tab1',
@@ -7,25 +7,39 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  frontimage = "";
-  bilder = {"bieber": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.y-jFGr4P0vbUEKqC35tXnQAAAA%26pid%3DApi&f=1",
-            "faader":"https://attila-teufen.weebly.com/uploads/2/6/6/5/26659704/6529744_orig.jpg",
-            "wolfe": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.PtOv_9-DFFpYhdJ2DwyUzAHaEK%26pid%3DApi&f=1",
-            "lumpe":"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.f20aXx9YDGAp7TSjTOo5zwAAAA%26pid%3DApi&f=1"
-      }
-  activities = {};
-  constructor(private http: HttpClient) {}
-  
-  ngOnInit(){
-    this.getActivities("http://localhost:8081/activities/beavers")
-  }
-      
-  changeImage(stufe){
-    this.frontimage = stufe;
+  groups = ["beavers", "pios"]
+  activities = [];
+  activities_url = "http://localhost:8081/activities/";
+  constructor(private http: HttpClient) { }
+
+  ngOnInit() {
+    this.getActivities(this.groups)
   }
 
-  getActivities(url){
-    this.http.get(url).toPromise().then((results)=>{
-      console.log(results); this.activities = results}).catch((results)=>{console.log(results)})
+
+  getActivities(groups) {
+    this.activities = [];
+    groups.forEach(group => {
+      this.http.get(this.activities_url + group).toPromise()
+        .then(
+          (results) => {
+            console.log(results);
+            this.activities = this.activities.concat(results['activities']);
+            this.activities.sort(
+              (a, b) => {         //sorting the activities by date
+                if (a.date < b.date) { return -1; }
+                if (a.date > b.date) { return 1; }
+                return 0;
+              }
+            )
+          }
+        )
+        .catch(
+          (results) => {
+            console.log(results)
+          }
+        )
+    }
+    );
   }
 }

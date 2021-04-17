@@ -17,7 +17,7 @@ export class Tab3Page {
   
   loadAudios(){
     //for (let soundName in ["soundboard_1.mp3"]){
-      this.nativeAudio.preloadSimple("1", 'sound/glied.mp3');//.then(onSuccess, onError);
+      this.nativeAudio.preloadSimple("1", 'assets/sound/glied.mp3');//.then(onSuccess, onError);
     //}
   }
 

@@ -8,11 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SettingsService } from './settings.service';
 
+import { NativeAudio } from '@ionic-native/native-audio/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SettingsService],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, NativeAudio, SettingsService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

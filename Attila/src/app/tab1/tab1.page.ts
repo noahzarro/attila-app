@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-tab1',
@@ -12,10 +13,19 @@ export class Tab1Page {
             "wolfe": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.PtOv_9-DFFpYhdJ2DwyUzAHaEK%26pid%3DApi&f=1",
             "lumpe":"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.f20aXx9YDGAp7TSjTOo5zwAAAA%26pid%3DApi&f=1"
       }
-
-  constructor() {}
-
+  activities = {};
+  constructor(private http: HttpClient) {}
+  
+  ngOnInit(){
+    this.getActivities("http://localhost:8081/activities/beavers")
+  }
+      
   changeImage(stufe){
     this.frontimage = stufe;
+  }
+
+  getActivities(url){
+    this.http.get(url).toPromise().then((results)=>{
+      console.log(results); this.activities = results}).catch((results)=>{console.log(results)})
   }
 }

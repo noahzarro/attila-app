@@ -22,7 +22,6 @@
 		35729,
 	],
 	
-	//"runArgs": ["--privileged", "-v /dev/bus/usb:/dev/bus/usb"]
 	"runArgs": ["--privileged"],
 	"mounts": ["type=bind,src=/dev/bus/usb,dst=/dev/bus/usb"],
 	// Use 'postCreateCommand' to run commands after the container is created.

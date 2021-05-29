@@ -16,13 +16,18 @@ export class Tab3Page {
 
   
   loadAudios(){
-    //for (let soundName in ["soundboard_1.mp3"]){
-      this.nativeAudio.preloadSimple("1", 'assets/sound/glied.mp3');//.then(onSuccess, onError);
-    //}
+    let soundboard_list = [
+      "glied.mp3", 
+      "arsch.mp3"
+    ];
+    for (let sound_name in soundboard_list){
+      this.nativeAudio.preloadSimple(sound_name, 'assets/sound/' + sound_name);//.then(onSuccess, onError);
+    }
   }
 
-  playAudio(id: String) {
-    this.nativeAudio.play("1");//.then(onSuccess, onError);
+  playAudio(id: string) {
+    let last_ID = id;
+    this.nativeAudio.play(id);//.then(onSuccess, onError);
   }
   
 

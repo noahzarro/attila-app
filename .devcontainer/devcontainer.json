@@ -25,7 +25,7 @@
 	"runArgs": ["--privileged"],
 	"mounts": ["type=bind,src=/dev/bus/usb,dst=/dev/bus/usb"],
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "npm i -g native-run"
+	"postCreateCommand": "npm i -g native-run && cat /workspaces/attila-app/.devcontainer/better_ps1.bashrc >> ~/.bashrc"
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	//"remoteUser": "node"
 }

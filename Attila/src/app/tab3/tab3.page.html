@@ -15,11 +15,10 @@
 
   <ion-card>
     <!--<img src = "https://attila-teufen.weebly.com/uploads/2/6/6/5/26659704/7273338_orig.jpg">-->
-    <!-- <ion-card-header>Welcome to targets</ion-card-header>
-    <ion-button color = "beaver" (click) = "playAudio('glied.mp3')" >gleid</ion-button>
-    <ion-button color = "beaver" (click) = "playAudio('1')" >Gied2</ion-button>
+    <ion-card-header id="A">Welcome to targets</ion-card-header>
+    <ion-button *ngFor="let soundname of soundboard_list" color = "beaver" (click) = "playAudio(soundname)" > {{ soundname }} </ion-button>
+    <!-- <ion-button color = "beaver" (click) = "playAudio('1')" >Gied2</ion-button>
     <ion-button color = "beaver" (click) = "playAudio('1')" >12345</ion-button>
-    <ion-button color = "beaver" (click) = "playAudio('1')" >Öl</ion-button>
-    <ion-text> {{}} </ion-text> -->
+    <ion-button color = "beaver" (click) = "playAudio('1')" >Öl</ion-button> -->
   </ion-card>
 </ion-content>

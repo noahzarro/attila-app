@@ -7,6 +7,13 @@ import { NativeAudio } from '@ionic-native/native-audio/ngx';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
+  
+  soundboard_list = [
+    "glied", 
+    "agi",
+    "iiiä",
+    "bitter"
+  ];
 
   constructor(private nativeAudio: NativeAudio) {}
   
@@ -16,20 +23,19 @@ export class Tab3Page {
 
   
   loadAudios(){
-    let soundboard_list = [
-      "glied.mp3", 
-      "arsch.mp3"
-    ];
-    for (let sound_name in soundboard_list){
-      this.nativeAudio.preloadSimple(sound_name, 'assets/sound/' + sound_name);//.then(onSuccess, onError);
+  
+    for (let sound_name of this.soundboard_list){
+      this.nativeAudio.preloadSimple(sound_name, 'assets/sound/' + sound_name + ".mp3").then(() => {this.log("hat funktioniert")}, (error) => {this.log(error)});
     }
   }
 
   playAudio(id: string) {
-    let last_ID = id;
+    this.log(id)
     this.nativeAudio.play(id);//.then(onSuccess, onError);
   }
   
-
+  log(message: string){
+    document.getElementById("A").innerHTML = message;
+  }
   
 }

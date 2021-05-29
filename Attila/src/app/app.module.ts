@@ -6,7 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SettingsService } from './settings.service';
+import { SettingsService } from './settings-service/settings.service';
 
 import { NativeAudio } from '@ionic-native/native-audio/ngx';
 

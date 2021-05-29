@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SettingsService } from '../settings.service';
+import { SettingsService } from '../settings-service/settings.service';
 
 @Component({
   selector: 'app-tab2',

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SettingsService } from '../settings.service';
+import { SettingsService } from '../settings-service/settings.service';
 
 @Component({
   selector: 'app-tab1',
@@ -14,6 +14,7 @@ export class Tab1Page {
             "lumpe":"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.f20aXx9YDGAp7TSjTOo5zwAAAA%26pid%3DApi&f=1"
       }
 
+  constructor(private settingsService: SettingsService) {}
 
   changeImage(stufe){
     this.frontimage = stufe;

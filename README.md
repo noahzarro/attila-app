@@ -6,6 +6,9 @@
 ## On Phone Development
 `ionic cordova run android -l`
 
+watch console logs with:
+`chrome://inspect/#devices`
+
 - Don't forget do enable developer options
 - Don't forget to trust the pc on the phone
 

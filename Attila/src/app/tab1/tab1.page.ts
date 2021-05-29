@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class Tab1Page {
   groups = ["beavers", "pios"]
   activities = [];
-  activities_url = "http://localhost:8081/activities/";
+  base_url = "https://app.pfadi-attila.ch/";
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -20,7 +20,7 @@ export class Tab1Page {
   getActivities(groups) {
     this.activities = [];
     groups.forEach(group => {
-      this.http.get(this.activities_url + group).toPromise()
+      this.http.get(this.base_url + "activities/" + group).toPromise()
         .then(
           (results) => {
             console.log(results);

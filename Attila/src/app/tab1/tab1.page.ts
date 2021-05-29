@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SettingsService } from '../settings-service/settings.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-tab1',
@@ -7,16 +8,38 @@ import { SettingsService } from '../settings-service/settings.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  frontimage = "";
-  bilder = {"bieber": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.y-jFGr4P0vbUEKqC35tXnQAAAA%26pid%3DApi&f=1",
-            "faader":"https://attila-teufen.weebly.com/uploads/2/6/6/5/26659704/6529744_orig.jpg",
-            "wolfe": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.PtOv_9-DFFpYhdJ2DwyUzAHaEK%26pid%3DApi&f=1",
-            "lumpe":"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.f20aXx9YDGAp7TSjTOo5zwAAAA%26pid%3DApi&f=1"
-      }
+  groups = ["beavers", "pios"]
+  activities = [];
+  base_url = "https://app.pfadi-attila.ch/";
+  constructor(private http: HttpClient, private settingsService: SettingsService) { }
 
-  constructor(private settingsService: SettingsService) {}
+  ngOnInit() {
+    this.getActivities(this.groups)
+  }
 
-  changeImage(stufe){
-    this.frontimage = stufe;
+  getActivities(groups) {
+    this.activities = [];
+    groups.forEach(group => {
+      this.http.get(this.base_url + "activities/" + group).toPromise()
+        .then(
+          (results) => {
+            console.log(results);
+            this.activities = this.activities.concat(results['activities']);
+            this.activities.sort(
+              (a, b) => {         //sorting the activities by date
+                if (a.date < b.date) { return -1; }
+                if (a.date > b.date) { return 1; }
+                return 0;
+              }
+            )
+          }
+        )
+        .catch(
+          (results) => {
+            console.log(results)
+          }
+        )
+    }
+    );
   }
 }

@@ -13,14 +13,25 @@
     </ion-toolbar>
   </ion-header>
 
-    <ion-card>
-      <img src = {{frontimage}}>
-      <ion-card-header>Big Chungus</ion-card-header> 
-      <ion-card-content>You have been chunged</ion-card-content>
+  <ion-list>
+    <ion-card *ngFor = "let activity of activities">
+      <img src = "{{base_url + 'images/' + activity.image}}">
+      <ion-card-header color = {{activity.group}}>{{activity.name}}</ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngIf = "activity.end_date == null; else hasEndDate">Datum: {{activity.date | date : 'EEE, d. MMM y'}}</ion-item> <!-- customize dateformate (https://angular.io/api/common/DatePipe)-->
+
+          <ng-template #hasEndDate>
+            <ion-item>Datum: {{activity.date | date}} - {{activity.end_date | date}}</ion-item>
+          </ng-template>
+
+          <ion-item>Zeit: {{activity.time}}</ion-item>
+          <ion-item>Ort: {{activity.place}}</ion-item>
+          <ion-item>Mitnehmen: {{activity.take_away}}</ion-item>
+          <ion-item>Sonstiges: {{activity.other}}</ion-item>
+        </ion-list> 
+      </ion-card-content>
     </ion-card>
-  <ion-button color = "beaver" (click) = "changeImage(bilder.bieber)">beeber</ion-button>
-  <ion-button color = "wolves" (click) = "changeImage(bilder.wolfe)">woelf</ion-button>
-  <ion-button color = "scouts" (click) = "changeImage(bilder.faader)">faader</ion-button>
-  <ion-button color = "pios" (click) = "changeImage(bilder.lumpe)">lumpe</ion-button>
+  </ion-list>
 
 </ion-content>
